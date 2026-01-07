@@ -138,4 +138,10 @@
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
     <value>Adresse e-mail et/ou mot de passe invalides .</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>La requête ne contient pas de jeton.</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>User without permission access resource.</value>
+  </data>
 </root>
