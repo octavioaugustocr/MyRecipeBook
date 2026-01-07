@@ -144,4 +144,13 @@
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>User without permission access resource.</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>A palavra-chave é inválida.</value>
+  </data>
+  <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
+    <value>A palavra-passe é diferente da palavra-passe atual.</value>
+  </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>A palavra-passe não pode estar vazia.</value>
+  </data>
 </root>
