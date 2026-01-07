@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MyRecipeBook.Application.SharedValidators;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Exceptions;
 
@@ -12,7 +13,7 @@ namespace MyRecipeBook.Application.UseCases.User.Register
 
             RuleFor(user => user.Email).NotEmpty().WithMessage(ResourceMessagesException.EMAIL_EMPTY);
 
-            RuleFor(user => user.Password.Length).GreaterThanOrEqualTo(6).WithMessage(ResourceMessagesException.PASSWORD_MUST_BE_LONGER_THAN_6_CHARACTERS);
+            RuleFor(user => user.Password).PasswordIsValid();
 
             When(user => string.IsNullOrEmpty(user.Email) == false, () =>
             {
