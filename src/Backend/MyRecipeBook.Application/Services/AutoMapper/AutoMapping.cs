@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyRecipeBook.Communication.Requests;
+using MyRecipeBook.Communication.Responses;
 
 namespace MyRecipeBook.Application.Services.AutoMapper
 {
@@ -8,6 +9,7 @@ namespace MyRecipeBook.Application.Services.AutoMapper
         public AutoMapping()
         {
             RequestToDomain();
+            DomainToResponse();
         }
 
         private void RequestToDomain()
@@ -18,7 +20,7 @@ namespace MyRecipeBook.Application.Services.AutoMapper
 
         private void DomainToResponse()
         {
-
+            CreateMap<Domain.Entities.User, ResponseUserProfileJson>();
         }
     }
 }

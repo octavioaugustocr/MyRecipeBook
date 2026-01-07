@@ -126,7 +126,7 @@
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>The name cannot be empty.</value>
   </data>
-  <data name="PASSWORD_EMPTY" xml:space="preserve">
+  <data name="PASSWORD_MUST_BE_LONGER_THAN_6_CHARACTERS" xml:space="preserve">
     <value>The password must be longer than 6 characters.</value>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
@@ -134,5 +134,14 @@
   </data>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
     <value>E-mail already registered.</value>
+  </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>Invalid email and/or password.</value>
+  </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Request don't have token.</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>User without permission access resource.</value>
   </data>
 </root>
