@@ -61,6 +61,51 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The recipe needs at least one ingredient..
+        /// </summary>
+        public static string AT_LEAST_ONE_INGREDIENT {
+            get {
+                return ResourceManager.GetString("AT_LEAST_ONE_INGREDIENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The recipe needs at least one instruction..
+        /// </summary>
+        public static string AT_LEAST_ONE_INSTRUCTION {
+            get {
+                return ResourceManager.GetString("AT_LEAST_ONE_INSTRUCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cooking time not supported..
+        /// </summary>
+        public static string COOKING_TIME_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("COOKING_TIME_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Difficulty level not supported..
+        /// </summary>
+        public static string DIFFICULTY_LEVEL_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("DIFFICULTY_LEVEL_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Dish type not supported..
+        /// </summary>
+        public static string DISH_TYPE_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("DISH_TYPE_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail already registered..
         /// </summary>
         public static string EMAIL_ALREADY_REGISTERED {
@@ -97,6 +142,33 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The ingredient in the recipe cannot be empty..
+        /// </summary>
+        public static string INGREDIENT_EMPTY {
+            get {
+                return ResourceManager.GetString("INGREDIENT_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The text in the instruction cannot be empty..
+        /// </summary>
+        public static string INSTRUCTION_EMPTY {
+            get {
+                return ResourceManager.GetString("INSTRUCTION_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Instruction exceeds limit characters..
+        /// </summary>
+        public static string INSTRUCTION_EXCEEDS_LIMIT_CHARACTERS {
+            get {
+                return ResourceManager.GetString("INSTRUCTION_EXCEEDS_LIMIT_CHARACTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The password is invalid..
         /// </summary>
         public static string INVALID_PASSWORD {
@@ -124,6 +196,15 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The instruction step must be greater than zero..
+        /// </summary>
+        public static string NON_NEGATIVE_OR_ZERO_INSTRUCTION_STEP {
+            get {
+                return ResourceManager.GetString("NON_NEGATIVE_OR_ZERO_INSTRUCTION_STEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The password is different from the current password..
         /// </summary>
         public static string PASSWORD_DIFFERENT_CURRENT_PASSWORD {
@@ -147,6 +228,24 @@ namespace MyRecipeBook.Exceptions {
         public static string PASSWORD_MUST_BE_LONGER_THAN_6_CHARACTERS {
             get {
                 return ResourceManager.GetString("PASSWORD_MUST_BE_LONGER_THAN_6_CHARACTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The recipe title cannot be empty..
+        /// </summary>
+        public static string RECIPE_TITLE_EMPTY {
+            get {
+                return ResourceManager.GetString("RECIPE_TITLE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Two or more instructions in the same order..
+        /// </summary>
+        public static string TWO_OR_MORE_INSTRUCTIONS_SAME_ORDER {
+            get {
+                return ResourceManager.GetString("TWO_OR_MORE_INSTRUCTIONS_SAME_ORDER", resourceCulture);
             }
         }
         
