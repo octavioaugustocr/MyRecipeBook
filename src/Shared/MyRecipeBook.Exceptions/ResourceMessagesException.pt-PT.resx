@@ -144,4 +144,46 @@
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>User without permission access resource.</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>A palavra-chave é inválida.</value>
+  </data>
+  <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
+    <value>A palavra-passe é diferente da palavra-passe atual.</value>
+  </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>A palavra-passe não pode estar vazia.</value>
+  </data>
+  <data name="COOKING_TIME_NOT_SUPPORTED" xml:space="preserve">
+    <value>Tempo de cozedura não suportado.</value>
+  </data>
+  <data name="DIFFICULTY_LEVEL_NOT_SUPPORTED" xml:space="preserve">
+    <value>Nível de dificuldade não suportado.</value>
+  </data>
+  <data name="RECIPE_TITLE_EMPTY" xml:space="preserve">
+    <value>O título da receita não pode estar vazio.</value>
+  </data>
+  <data name="AT_LEAST_ONE_INGREDIENT" xml:space="preserve">
+    <value>A receita precisa de, pelo menos, um ingrediente.</value>
+  </data>
+  <data name="AT_LEAST_ONE_INSTRUCTION" xml:space="preserve">
+    <value>A receita necessita de, pelo menos, uma instrução.</value>
+  </data>
+  <data name="DISH_TYPE_NOT_SUPPORTED" xml:space="preserve">
+    <value>Tipo de prato não suportado.</value>
+  </data>
+  <data name="INGREDIENT_EMPTY" xml:space="preserve">
+    <value>O ingrediente da receita não pode estar vazio.</value>
+  </data>
+  <data name="NON_NEGATIVE_OR_ZERO_INSTRUCTION_STEP" xml:space="preserve">
+    <value>O passo de instrução deve ser superior a zero.</value>
+  </data>
+  <data name="INSTRUCTION_EMPTY" xml:space="preserve">
+    <value>O texto na instrução não pode estar vazio.</value>
+  </data>
+  <data name="INSTRUCTION_EXCEEDS_LIMIT_CHARACTERS" xml:space="preserve">
+    <value>A instrução excede o limite de caracteres.</value>
+  </data>
+  <data name="TWO_OR_MORE_INSTRUCTIONS_SAME_ORDER" xml:space="preserve">
+    <value>Duas ou mais instruções pela mesma ordem.</value>
+  </data>
 </root>
