@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MyRecipeBook.Domain.Entities;
+using MyRecipeBook.Domain.Enums;
 using MyRecipeBook.Infrastructure.DataAccess;
 
 namespace WebApi.Test
@@ -11,6 +11,7 @@ namespace WebApi.Test
     public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         private MyRecipeBook.Domain.Entities.User _user = default!;
+        private MyRecipeBook.Domain.Entities.Recipe _recipe = default!;
         private string _password = string.Empty;
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -49,11 +50,21 @@ namespace WebApi.Test
 
         public Guid GetUserIdentifier() => _user.UserIdentifier;
 
+        public string GetRecipeTitle() => _recipe.Title;
+
+        public Difficulty GetRecipeDifficulty() => _recipe.Difficulty!.Value; 
+
+        public CookingTime GetRecipeCookingTime() => _recipe.CookingTime!.Value;
+
+        public IList<DishType> GetRecipeDishTypes() => _recipe.DishTypes.Select(d => d.Type).ToList();
+
         private void StartDatabase(MyRecipeBookDbContext dbContext)
         {
             (_user, _password) = UserBuilder.Build();
+            _recipe = RecipeBuilder.Build(_user);
 
             dbContext.Users.Add(_user);
+            dbContext.Recipes.Add(_recipe);
 
             dbContext.SaveChanges();
         }
