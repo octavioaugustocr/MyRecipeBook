@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.UseCases.Recipe;
+using MyRecipeBook.Application.UseCases.Recipe.Filter;
 using MyRecipeBook.Application.UseCases.User.ChangePassword;
 using MyRecipeBook.Application.UseCases.User.Login.DoLogin;
 using MyRecipeBook.Application.UseCases.User.Profile;
@@ -43,6 +44,7 @@ namespace MyRecipeBook.Application
             services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
             services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
             services.AddScoped<IRegisterRecipeUseCase, RegisterRecipeUseCase>();
+            services.AddScoped<IFilterRecipeUseCase, FilterRecipeUseCase>();
         }
     }
 }
