@@ -76,6 +76,7 @@ namespace MyRecipeBook.Infrastructure
             services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
             services.AddScoped<IRecipeWriteOnlyRepository, RecipeRepository>();
             services.AddScoped<IRecipeReadOnlyRepository, RecipeRepository>();
+            services.AddScoped<IRecipeUpdateOnlyRepository, RecipeRepository>();
         }
 
         private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
