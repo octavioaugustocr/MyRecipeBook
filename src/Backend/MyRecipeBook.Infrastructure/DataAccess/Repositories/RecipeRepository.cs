@@ -68,6 +68,18 @@ namespace MyRecipeBook.Infrastructure.DataAccess.Repositories
         
         public void Update(Recipe recipe) => _dbContext.Recipes.Update(recipe);
 
+        public async Task<IList<Recipe>> GetForDashboard(User user)
+        {
+            return await _dbContext
+                .Recipes
+                .AsNoTracking()
+                .Include(r => r.Ingredients)
+                .Where(r => r.Active && r.UserId == user.Id)
+                .OrderByDescending(r => r.CreatedOn)
+                .Take(5)
+                .ToListAsync();
+        }
+
         private IIncludableQueryable<Recipe, IList<DishType>> GetFullRecipe()
         {
             return _dbContext
