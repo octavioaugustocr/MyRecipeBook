@@ -43,7 +43,7 @@ public class UpdateRecipeUseCase : IUpdateRecipeUseCase
         
         var instructions = request.Instructions.OrderBy(i => i.Step).ToList();
         for (var i = 0; i < instructions.Count; i++)
-            instructions.ElementAt(i).Step = i + 1;
+            instructions[i].Step = i + 1;
 
         recipe.Instructions = _mapper.Map<IList<Domain.Entities.Instruction>>(instructions);
         

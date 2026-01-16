@@ -44,7 +44,7 @@ namespace MyRecipeBook.Application.UseCases.User.Update
         {
             var validator = new UpdateUserValidator();
 
-            var result = validator.Validate(request);
+            var result = await validator.ValidateAsync(request);
 
             if (currentEmail.Equals(request.Email).IsFalse())
             {
