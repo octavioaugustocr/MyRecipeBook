@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using MyRecipeBook.API.Converters;
 using MyRecipeBook.API.Filters;
@@ -81,6 +82,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 MigrateDatabase();
+
+app.UseStaticFiles();
+
+
+// https://localhost:7108/images/6011bf0e-ddfa-4245-9c6d-1bbfbc309694/e59bd4cb-b125-4ae6-a7ad-fe28e4f0b947.jpg
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(@"D:\images-my-recipe-book-api"),
+    RequestPath = "/images"
+});
+
 
 await app.RunAsync();
 
