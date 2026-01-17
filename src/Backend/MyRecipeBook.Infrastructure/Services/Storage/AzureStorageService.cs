@@ -13,6 +13,11 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
             _blobServiceClient = blobServiceClient;
         }
 
+        public Task<string> GetImageUrl(User user, string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Upload(User user, Stream file, string fileName)
         {
             var container = _blobServiceClient.GetBlobContainerClient(user.UserIdentifier.ToString());
