@@ -13,7 +13,12 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
             _blobServiceClient = blobServiceClient;
         }
 
-        public Task<string> GetImageUrl(User user, string fileName)
+        public Task Delete(User user, string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetFileUrl(User user, string fileName)
         {
             throw new NotImplementedException();
         }

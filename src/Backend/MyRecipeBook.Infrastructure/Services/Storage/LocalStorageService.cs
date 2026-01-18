@@ -1,9 +1,6 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Sas;
-using MyRecipeBook.Domain.Entities;
+﻿using MyRecipeBook.Domain.Entities;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services.Storage;
-using MyRecipeBook.Domain.ValueObjects;
 
 namespace MyRecipeBook.Infrastructure.Services.Storage
 {
@@ -29,7 +26,7 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
             await file.CopyToAsync(fileStream);
         }
 
-        public async Task<string> GetImageUrl(User user, string fileName)
+        public async Task<string> GetFileUrl(User user, string fileName)
         {
             var userFolder = Path.Combine(_basePath, user.UserIdentifier.ToString());
 
@@ -42,6 +39,24 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
                 return string.Empty;
 
             return $"/images/{user.UserIdentifier}/{fileName}";
+        }
+
+        public async Task Delete(User user, string fileName)
+        {
+            var userFolder = Path.Combine(_basePath, user.UserIdentifier.ToString());
+
+            if (Directory.Exists(userFolder).IsFalse())
+                return;
+
+            var filePath = Path.Combine(userFolder, fileName);
+
+            if (File.Exists(filePath).IsFalse())
+                return;
+
+            await Task.Run(() => File.Delete(filePath));
+
+            if (Directory.EnumerateFiles(userFolder).Any().IsFalse())
+                await Task.Run(() => Directory.Delete(userFolder));
         }
     }
 }
