@@ -135,7 +135,8 @@ namespace MyRecipeBook.Infrastructure
             // Nuget Package: Microsoft.Extensions.Configuration.Binder
             var additionalKey = configuration.GetValue<string>("Settings:Password:AdditionalKey");
 
-            services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(additionalKey!));
+            // services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(additionalKey!));
+            services.AddScoped<IPasswordEncripter, BCryptNet>();
         }
 
         /*
