@@ -58,5 +58,15 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
             if (Directory.EnumerateFiles(userFolder).Any().IsFalse())
                 await Task.Run(() => Directory.Delete(userFolder));
         }
+
+        public async Task DeleteContainer(Guid userIdentifier)
+        {
+            var userFolder = Path.Combine(_basePath, userIdentifier.ToString());
+
+            if (Directory.Exists(userFolder).IsFalse())
+                return;
+
+            await Task.Run(() => Directory.Delete(userFolder, true));
+        }
     }
 }

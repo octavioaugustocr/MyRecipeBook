@@ -12,7 +12,7 @@ using MyRecipeBook.Domain.Security.Cryptography;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.GoogleAI;
 using MyRecipeBook.Domain.Services.LoggedUser;
-using MyRecipeBook.Domain.Services.OpenAI;
+using MyRecipeBook.Domain.Services.ServiceBus;
 using MyRecipeBook.Domain.Services.Storage;
 using MyRecipeBook.Infrastructure.DataAccess;
 using MyRecipeBook.Infrastructure.DataAccess.Repositories;
@@ -22,9 +22,9 @@ using MyRecipeBook.Infrastructure.Security.Tokens.Access.Generator;
 using MyRecipeBook.Infrastructure.Security.Tokens.Access.Validator;
 using MyRecipeBook.Infrastructure.Services.GoogleAI;
 using MyRecipeBook.Infrastructure.Services.LoggedUser;
-using MyRecipeBook.Infrastructure.Services.OpenAI;
+using MyRecipeBook.Infrastructure.Services.RabbitMQ;
 using MyRecipeBook.Infrastructure.Services.Storage;
-using OpenAI.Chat;
+using RabbitMQ.Client;
 using System.Reflection;
 
 namespace MyRecipeBook.Infrastructure
@@ -40,6 +40,7 @@ namespace MyRecipeBook.Infrastructure
             // AddOpenAI(services, configuration);
             AddGoogleAI(services, configuration);
             AddLocalStorage(services, configuration);
+            AddQueueRabbitMQ(services, configuration);
 
             if (configuration.IsUnitTestEnviroment())
                 return;
@@ -86,6 +87,7 @@ namespace MyRecipeBook.Infrastructure
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
             services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+            services.AddScoped<IUserDeleteOnlyRepository, UserRepository>();
             services.AddScoped<IRecipeWriteOnlyRepository, RecipeRepository>();
             services.AddScoped<IRecipeReadOnlyRepository, RecipeRepository>();
             services.AddScoped<IRecipeUpdateOnlyRepository, RecipeRepository>();
@@ -172,6 +174,44 @@ namespace MyRecipeBook.Infrastructure
 
             if (basePath.NotEmpty())
                 services.AddScoped<IBlobStorageService>(c => new LocalStorageService(basePath!));
+        }
+
+        /*
+        private static void AddQueueAzure(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.GetValue<string>("Settings:ServiceBus:DeleteUserAccount");
+
+            var client = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+            {
+                TransportType = ServiceBusTransportType.AmqpWebSockets
+            });
+
+            var deleteQueue = new DeleteUserQueue(client.CreateSender("user"));
+
+            var deleteUserProcessor = new DeleteUserProcessor(client.CreateProcessor("user", new ServiceProcessorOptions
+            {
+                MaxConcurrentCalls = 1
+            }));
+
+            services.AddSingleton(deleteUserProcessor);
+
+            services.AddScoped<IDeleteUserQueue>(options => deleteQueue);
+        }
+        */
+
+        private static void AddQueueRabbitMQ(IServiceCollection services, IConfiguration configuration)
+        {
+            var rabbitMqUri = configuration.GetValue<string>("Settings:RabbitMQ:DeleteUserAccount");
+
+            var factory = new ConnectionFactory
+            {
+                Uri = new Uri(rabbitMqUri!)
+            };
+
+            var connection = factory.CreateConnection();
+            services.AddSingleton(connection);
+
+            services.AddScoped<IDeleteUserQueue, DeleteUserQueue>();
         }
     }
 }
