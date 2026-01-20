@@ -1,21 +1,30 @@
-﻿using FluentMigrator.Runner;
+﻿using Azure.Storage.Blobs;
+using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Domain.Enums;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.Recipe;
 using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Domain.Security.Cryptography;
 using MyRecipeBook.Domain.Security.Tokens;
+using MyRecipeBook.Domain.Services.GoogleAI;
 using MyRecipeBook.Domain.Services.LoggedUser;
+using MyRecipeBook.Domain.Services.OpenAI;
+using MyRecipeBook.Domain.Services.Storage;
 using MyRecipeBook.Infrastructure.DataAccess;
 using MyRecipeBook.Infrastructure.DataAccess.Repositories;
 using MyRecipeBook.Infrastructure.Extensions;
 using MyRecipeBook.Infrastructure.Security.Cryptography;
 using MyRecipeBook.Infrastructure.Security.Tokens.Access.Generator;
 using MyRecipeBook.Infrastructure.Security.Tokens.Access.Validator;
+using MyRecipeBook.Infrastructure.Services.GoogleAI;
 using MyRecipeBook.Infrastructure.Services.LoggedUser;
+using MyRecipeBook.Infrastructure.Services.OpenAI;
+using MyRecipeBook.Infrastructure.Services.Storage;
+using OpenAI.Chat;
 using System.Reflection;
 
 namespace MyRecipeBook.Infrastructure
@@ -28,6 +37,9 @@ namespace MyRecipeBook.Infrastructure
             AddLoggedUser(services);
             AddTokens(services, configuration);
             AddPasswordEncrypter(services, configuration);
+            // AddOpenAI(services, configuration);
+            AddGoogleAI(services, configuration);
+            AddLocalStorage(services, configuration);
 
             if (configuration.IsUnitTestEnviroment())
                 return;
@@ -122,6 +134,44 @@ namespace MyRecipeBook.Infrastructure
             var additionalKey = configuration.GetValue<string>("Settings:Password:AdditionalKey");
 
             services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(additionalKey!));
+        }
+
+        /*
+        private static void AddOpenAI(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddScoped<IGenerateRecipeAI, ChatGPTService>();
+
+            var apiKey = configuration.GetValue<string>("Settings:OpenAI:ApiKey");
+
+            services.AddScoped(c => new ChatClient(MyRecipeBookRuleConstants.CHAT_MODEL, apiKey));
+        }
+        */
+
+        private static void AddGoogleAI(IServiceCollection services, IConfiguration configuration)
+        {
+            var apiKey = configuration.GetValue<string>("Settings:GoogleAI:ApiKey");
+
+            services.AddScoped<GoogleAIConfig>(_ => new GoogleAIConfig
+            {
+                ApiKey = apiKey!
+            });
+
+            services.AddScoped<IGenerateRecipeGoogleAI, GoogleAIService>();
+        }
+
+        private static void AddAzureStorage(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.GetValue<string>("Settings:BlobStorage:Azure");
+
+            services.AddScoped<IBlobStorageService>(c => new AzureStorageService(new BlobServiceClient(connectionString)));
+        }
+
+        private static void AddLocalStorage(IServiceCollection services, IConfiguration configuration)
+        {
+            var basePath = configuration.GetValue<string>("Settings:BlobStorage:Local");
+
+            if (basePath.NotEmpty())
+                services.AddScoped<IBlobStorageService>(c => new LocalStorageService(basePath!));
         }
     }
 }

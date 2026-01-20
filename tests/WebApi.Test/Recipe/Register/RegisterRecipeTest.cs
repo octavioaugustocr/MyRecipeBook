@@ -27,7 +27,7 @@ namespace WebApi.Test.Recipe.Register
 
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
 
-            var response = await DoPost(method: METHOD, request: request, token: token);
+            var response = await DoPostFormData(method: METHOD, request: request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -48,7 +48,7 @@ namespace WebApi.Test.Recipe.Register
 
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
 
-            var response = await DoPost(method: METHOD, request: request, token: token, culture: culture);
+            var response = await DoPostFormData(method: METHOD, request: request, token: token, culture: culture);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 

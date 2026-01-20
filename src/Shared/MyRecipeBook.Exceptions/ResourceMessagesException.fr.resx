@@ -189,4 +189,16 @@
   <data name="RECIPE_NOT_FOUND" xml:space="preserve">
     <value>Recette introuvable.</value>
   </data>
+  <data name="INVALID_NUMBER_INGREDIENTS" xml:space="preserve">
+    <value>Nombre d'ingrédients incorrect. La liste doit contenir entre 1 et 5 ingrédients.</value>
+  </data>
+  <data name="DUPLICATED_INGREDIENTS_IN_LIST" xml:space="preserve">
+    <value>Les ingrédients en double ne sont pas autorisés sur la liste.</value>
+  </data>
+  <data name="ONLY_IMAGES_ACCEPTED" xml:space="preserve">
+    <value>Seules les images (PNG, JPG, JPEG) sont acceptées.</value>
+  </data>
+  <data name="INGREDIENT_NOT_FOLLOWING_PATTERN" xml:space="preserve">
+    <value>Format d'ingrédient invalide. Veuillez vérifier si l'ingrédient respecte nos normes.</value>
+  </data>
 </root>
