@@ -1,4 +1,4 @@
-﻿namespace MyRecipeBook.Application.UseCases.User.Login.External
+﻿namespace MyRecipeBook.Application.UseCases.Login.External
 {
     public interface IExternalLoginUseCase
     {

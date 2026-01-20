@@ -1,9 +1,8 @@
-﻿
-using MyRecipeBook.Domain.Repositories;
+﻿using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Domain.Security.Tokens;
 
-namespace MyRecipeBook.Application.UseCases.User.Login.External
+namespace MyRecipeBook.Application.UseCases.Login.External
 {
     public class ExternalLoginUseCase : IExternalLoginUseCase
     {

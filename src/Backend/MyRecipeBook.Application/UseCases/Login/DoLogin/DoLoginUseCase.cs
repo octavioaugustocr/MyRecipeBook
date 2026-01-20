@@ -5,7 +5,7 @@ using MyRecipeBook.Domain.Security.Cryptography;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
-namespace MyRecipeBook.Application.UseCases.User.Login.DoLogin
+namespace MyRecipeBook.Application.UseCases.Login.DoLogin
 {
     public class DoLoginUseCase : IDoLoginUseCase
     {
