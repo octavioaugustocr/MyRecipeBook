@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Domain.Enums;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.Recipe;
 using MyRecipeBook.Domain.Repositories.User;
@@ -169,7 +170,8 @@ namespace MyRecipeBook.Infrastructure
         {
             var basePath = configuration.GetValue<string>("Settings:BlobStorage:Local");
 
-            services.AddScoped<IBlobStorageService>(c => new LocalStorageService(basePath!));
+            if (basePath.NotEmpty())
+                services.AddScoped<IBlobStorageService>(c => new LocalStorageService(basePath!));
         }
     }
 }
