@@ -1,11 +1,13 @@
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
+using MyRecipeBook.API.BackgroundServices;
 using MyRecipeBook.API.Converters;
 using MyRecipeBook.API.Filters;
 using MyRecipeBook.API.Middlewares;
 using MyRecipeBook.API.Token;
 using MyRecipeBook.Application;
 using MyRecipeBook.Domain.Security.Tokens;
+using MyRecipeBook.Domain.Services.ServiceBus;
 using MyRecipeBook.Infrastructure;
 using MyRecipeBook.Infrastructure.Extensions;
 using MyRecipeBook.Infrastructure.Migrations;
@@ -63,6 +65,10 @@ builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+// builder.Services.AddHostedService<DeleteUserServiceAzure>();
+
+builder.Services.AddHostedService<DeleteUserServiceRabbitMQ>();
 
 var app = builder.Build();
 

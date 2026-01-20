@@ -18,6 +18,11 @@ namespace MyRecipeBook.Infrastructure.Services.Storage
             throw new NotImplementedException();
         }
 
+        public Task DeleteContainer(Guid userIdentifier)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<string> GetFileUrl(User user, string fileName)
         {
             throw new NotImplementedException();
