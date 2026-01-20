@@ -203,6 +203,9 @@ namespace MyRecipeBook.Infrastructure
         {
             var rabbitMqUri = configuration.GetValue<string>("Settings:RabbitMQ:DeleteUserAccount");
 
+            if (string.IsNullOrWhiteSpace(rabbitMqUri))
+                return;
+
             var factory = new ConnectionFactory
             {
                 Uri = new Uri(rabbitMqUri!)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyRecipeBook.Domain.Entities;
 using MyRecipeBook.Domain.Repositories.User;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MyRecipeBook.Infrastructure.DataAccess.Repositories
 {
@@ -32,6 +33,14 @@ namespace MyRecipeBook.Infrastructure.DataAccess.Repositories
         public async Task<bool> ExistActiveUserWithEmail(string email) => await _dbContext.Users.AnyAsync(u => u.Email.Equals(email) && u.Active);
 
         public async Task<bool> ExistActiveUserWithIdentifier(Guid userIdentifier) => await _dbContext.Users.AnyAsync(user => user.UserIdentifier.Equals(userIdentifier) && user.Active);
+
+        public async Task<User?> GetByEmail(string email)
+        {
+            return await _dbContext
+                .Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(user => user.Active && user.Email.Equals(email));
+        }
 
         public async Task<User?> GetByEmailAndPassword(string email, string password)
         {
