@@ -16,7 +16,7 @@ namespace WebApi.Test.Recipe.Register
         {
             var request = new RequestRecipeJson();
 
-            var response = await DoPost(method: METHOD, request: request, token: "invalidToken");
+            var response = await DoPostFormData(method: METHOD, request: request, token: "invalidToken");
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
@@ -26,7 +26,7 @@ namespace WebApi.Test.Recipe.Register
         {
             var request = new RequestRecipeJson();
 
-            var response = await DoPost(method: METHOD, request: request, token: string.Empty);
+            var response = await DoPostFormData(method: METHOD, request: request, token: string.Empty);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
@@ -38,7 +38,7 @@ namespace WebApi.Test.Recipe.Register
 
             var request = new RequestRecipeJson();
 
-            var response = await DoPost(method: METHOD, request: request, token: token);
+            var response = await DoPostFormData(method: METHOD, request: request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
