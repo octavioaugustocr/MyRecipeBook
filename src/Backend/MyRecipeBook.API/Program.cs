@@ -9,7 +9,6 @@ using MyRecipeBook.API.Token;
 using MyRecipeBook.Application;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Security.Tokens;
-using MyRecipeBook.Domain.Services.ServiceBus;
 using MyRecipeBook.Infrastructure;
 using MyRecipeBook.Infrastructure.Extensions;
 using MyRecipeBook.Infrastructure.Migrations;
