@@ -201,4 +201,10 @@
   <data name="INGREDIENT_NOT_FOLLOWING_PATTERN" xml:space="preserve">
     <value>Format d'ingrédient invalide. Veuillez vérifier si l'ingrédient respecte nos normes.</value>
   </data>
+  <data name="INVALID_SESSION" xml:space="preserve">
+    <value>Aucune session valide n'a été trouvée. Veuillez vous connecter pour accéder à cette fonctionnalité.</value>
+  </data>
+  <data name="EXPIRED_SESSION" xml:space="preserve">
+    <value>Votre session a expiré. Veuillez vous reconnecter pour continuer.</value>
+  </data>
 </root>

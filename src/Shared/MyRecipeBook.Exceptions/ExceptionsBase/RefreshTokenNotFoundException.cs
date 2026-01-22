@@ -2,9 +2,9 @@
 
 namespace MyRecipeBook.Exceptions.ExceptionsBase
 {
-    public class InvalidLoginException : MyRecipeBookException
+    public class RefreshTokenNotFoundException : MyRecipeBookException
     {
-        public InvalidLoginException() : base(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID)
+        public RefreshTokenNotFoundException() : base(ResourceMessagesException.EXPIRED_SESSION)
         {
         }
 
