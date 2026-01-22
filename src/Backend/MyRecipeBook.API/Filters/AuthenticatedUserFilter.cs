@@ -32,7 +32,7 @@ namespace MyRecipeBook.API.Filters
                 var exist = await _repository.ExistActiveUserWithIdentifier(userIdentifier);
 
                 if (exist.IsFalse())
-                    throw new MyRecipeBookException(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
+                    throw new UnauthorizedException(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
             }
             catch (SecurityTokenExpiredException)
             {
@@ -41,9 +41,10 @@ namespace MyRecipeBook.API.Filters
                     TokenIsExpired = true
                 });
             }
-            catch (MyRecipeBookException ex)
+            catch (MyRecipeBookException myRecipeBookException)
             {
-                context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(ex.Message));
+                context.HttpContext.Response.StatusCode = (int)myRecipeBookException.GetStatusCode();
+                context.Result = new ObjectResult(new ResponseErrorJson(myRecipeBookException.GetErrorMessages()));
             }
             catch
             {
@@ -55,7 +56,7 @@ namespace MyRecipeBook.API.Filters
         {
             var authentication = context.HttpContext.Request.Headers.Authorization.ToString();
             if (string.IsNullOrWhiteSpace(authentication))
-                throw new MyRecipeBookException(ResourceMessagesException.NO_TOKEN);
+                throw new UnauthorizedException(ResourceMessagesException.NO_TOKEN);
 
             // authentication = "Bearer abcd1234" == X
             // authentication = "abcd1234" == OK

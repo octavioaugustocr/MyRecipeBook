@@ -31,5 +31,10 @@ namespace MyRecipeBook.Infrastructure.Security.Cryptography
 
             return sb.ToString();
         }
+
+        public bool IsValid(string password, string passwordHash)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
